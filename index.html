@@ -13,8 +13,16 @@
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="googlebot" content="index, follow">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="theme-color" content="#060C1A">
+    <meta name="color-scheme" content="dark">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="AssetTrack Pro">
 
     <link rel="canonical" href="https://acesoft.ca/">
+    <link rel="alternate" hreflang="en" href="https://acesoft.ca/">
+    <link rel="alternate" hreflang="x-default" href="https://acesoft.ca/">
     <link rel="icon" href="./assets/rfid_logo.png" type="image/png">
     <link rel="shortcut icon" href="./assets/rfid_logo.png" type="image/png">
 
@@ -24,14 +32,17 @@
         content="Track, audit, and manage assets with RFID and AI. AssetTrack Pro delivers real-time visibility and enterprise-grade control.">
     <meta property="og:url" content="https://acesoft.ca/">
     <meta property="og:site_name" content="Acesoft">
+    <meta property="og:locale" content="en_US">
     <meta property="og:image" content="https://acesoft.ca/wp-content/uploads/2024/09/Acesoft_Logo.png">
-    <meta property="og:image:alt" content="AssetTrack Pro by Acesoft">
+    <meta property="og:image:secure_url" content="https://acesoft.ca/wp-content/uploads/2024/09/Acesoft_Logo.png">
+    <meta property="og:image:alt" content="AssetTrack Pro — RFID asset tracking by Acesoft">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="RFID Asset Tracking Software | AssetTrack Pro by Acesoft">
     <meta name="twitter:description"
         content="RFID and AI-powered asset tracking for enterprises. Improve visibility, compliance, and control with AssetTrack Pro.">
     <meta name="twitter:image" content="https://acesoft.ca/wp-content/uploads/2024/09/Acesoft_Logo.png">
+    <meta name="twitter:image:alt" content="AssetTrack Pro — RFID asset tracking by Acesoft">
 
     <script type="application/ld+json">
         {
@@ -42,9 +53,43 @@
                     "@id": "https://acesoft.ca/#organization",
                     "name": "Acesoft",
                     "url": "https://acesoft.ca/",
-                    "logo": "https://acesoft.ca/wp-content/uploads/2024/09/Acesoft_Logo.png",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://acesoft.ca/wp-content/uploads/2024/09/Acesoft_Logo.png"
+                    },
                     "email": "info@acesoft.ca",
-                    "telephone": "+1-519-808-1000"
+                    "telephone": "+1-519-808-1000",
+                    "sameAs": [
+                        "https://acesoft.ca/"
+                    ]
+                },
+                {
+                    "@type": "WebSite",
+                    "@id": "https://acesoft.ca/#website",
+                    "url": "https://acesoft.ca/",
+                    "name": "Acesoft",
+                    "publisher": {
+                        "@id": "https://acesoft.ca/#organization"
+                    },
+                    "inLanguage": "en"
+                },
+                {
+                    "@type": "WebPage",
+                    "@id": "https://acesoft.ca/#webpage",
+                    "url": "https://acesoft.ca/",
+                    "name": "RFID Asset Tracking Software | AssetTrack Pro by Acesoft",
+                    "description": "AssetTrack Pro by Acesoft is an RFID asset tracking platform with real-time visibility, AI-assisted audits, role-based access, and enterprise asset lifecycle management.",
+                    "isPartOf": {
+                        "@id": "https://acesoft.ca/#website"
+                    },
+                    "about": {
+                        "@id": "https://acesoft.ca/#assettrack-pro"
+                    },
+                    "primaryImageOfPage": {
+                        "@type": "ImageObject",
+                        "url": "https://acesoft.ca/wp-content/uploads/2024/09/Acesoft_Logo.png"
+                    },
+                    "inLanguage": "en"
                 },
                 {
                     "@type": "SoftwareApplication",
@@ -53,23 +98,44 @@
                     "applicationCategory": "BusinessApplication",
                     "operatingSystem": "Web",
                     "description": "RFID and AI-enabled asset tracking software for real-time visibility, audits, and lifecycle governance.",
+                    "url": "https://acesoft.ca/",
                     "publisher": {
                         "@id": "https://acesoft.ca/#organization"
+                    },
+                    "offers": {
+                        "@type": "Offer",
+                        "url": "https://acesoft.ca/#pricing"
                     }
                 },
                 {
                     "@type": "Service",
                     "@id": "https://acesoft.ca/#service",
+                    "name": "RFID asset tracking and enterprise asset management",
                     "serviceType": "RFID Asset Tracking and Asset Management Services",
                     "provider": {
                         "@id": "https://acesoft.ca/#organization"
                     },
                     "areaServed": [
-                        "Canada",
-                        "United States",
-                        "United Arab Emirates",
-                        "India",
-                        "United Kingdom"
+                        {
+                            "@type": "Country",
+                            "name": "Canada"
+                        },
+                        {
+                            "@type": "Country",
+                            "name": "United States"
+                        },
+                        {
+                            "@type": "Country",
+                            "name": "United Arab Emirates"
+                        },
+                        {
+                            "@type": "Country",
+                            "name": "India"
+                        },
+                        {
+                            "@type": "Country",
+                            "name": "United Kingdom"
+                        }
                     ]
                 }
             ]
