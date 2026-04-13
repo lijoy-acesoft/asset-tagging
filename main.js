@@ -180,3 +180,58 @@ if (goTopBtn) {
     });
   });
 }
+
+/* ── CTA Connect Form (AJAX) ── */
+const connectForm = document.getElementById('connectForm');
+const connectFormStatus = document.getElementById('connectFormStatus');
+
+if (connectForm) {
+  connectForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const endpoint = connectForm.dataset.endpoint;
+    if (!endpoint) {
+      if (connectFormStatus) connectFormStatus.textContent = 'Submission endpoint is missing.';
+      return;
+    }
+
+    const submitBtn = connectForm.querySelector('button[type="submit"]');
+    const formData = new FormData(connectForm);
+    const payload = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      subject: formData.get('subject'),
+      phone: formData.get('phone'),
+      details: formData.get('details')
+    };
+
+    try {
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+      }
+      if (connectFormStatus) connectFormStatus.textContent = 'Submitting your request...';
+
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) throw new Error('Request failed');
+
+      connectForm.reset();
+      if (connectFormStatus) connectFormStatus.textContent = 'Thank you! We will contact you shortly.';
+    } catch (error) {
+      if (connectFormStatus) connectFormStatus.textContent = 'Unable to submit right now. Please try again.';
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send';
+      }
+    }
+  });
+}

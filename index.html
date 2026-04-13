@@ -20,13 +20,22 @@
     <!-- Canvas Background -->
     <canvas id="bg"></canvas>
 
+    <!-- ─── Top Contact Bar ─────────────────────────────────────────────── -->
+    <div class="top-contact-bar">
+        <div class="top-contact-bar__inner">
+            <span>Asia: +971 56 491 9389</span>
+            <span>North America: +1 519 808 1000</span>
+            <span>Email: info@acesoft.ca</span>
+        </div>
+    </div>
+
     <!-- ─── Nav ───────────────────────────────────────────────────────────── -->
     <nav class="nav">
         <div class="nav__logo">
-            <a href="https://acesoft.ca/" target="_blank" rel="noopener noreferrer">
+            <!-- <a href="https:////acesoft.ca/" target="_blank" rel="noopener noreferrer"> -->
                 <img src="assets/rfid_logo.png" alt="AssetTrack Pro Logo"
                     style="height: 64px; width: auto; object-fit: contain;" />
-            </a>
+            <!-- </a> -->
         </div>
         <div class="nav__links">
             <a href="#solve">How It Works</a>
@@ -60,16 +69,17 @@
                         ✨ The New Standard in Asset Tracking
                     </div>
                     <h1 class="hero__title anim-slide-up">
-                        Track Assets<br>
-                        <span class="">Smarter</span> &amp; <span class="accent-gradient">Faster</span>
+                        <span class="hero__title-lead">AI-Powered</span> Asset Tracking<br>
+                        <span class="hero__title-soft">Smarter</span>, <span class="accent-gradient">Faster</span> &amp; <span
+                            class="hero__title-soft">More Accurate</span>
                     </h1>
                     <p class="hero__subtitle anim-slide-up-delay">
                         One unified platform to control, optimize, and protect every asset. Transform fragmented records
-                        into a single source of truth — powered by AI.
+                        into a single source of truth with intelligent AI support for real-time decisions.
                     </p>
                     <div class="hero__actions anim-slide-up-delay-2">
                         <button class="btn-primary btn-shine"
-                            onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">
+                            onclick="window.open('assets/Asset%20Tagging%20Solution.pdf','_blank')">
                             Get Started
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2.5">
@@ -88,11 +98,11 @@
                     </div>
 
                     <div class="hero__trust anim-slide-up-delay-3">
-                        <div class="trust-avatars">
-                            <div class="avatar-placeholder" style="background:#555"></div>
-                            <div class="avatar-placeholder" style="background:#444"></div>
-                            <div class="avatar-placeholder" style="background:#333"></div>
-                            <div class="avatar-placeholder" style="background:#222"></div>
+                        <div class="trust-logos">
+                            <img src="assets/clientlogo/Logo-2.png" alt="Client logo 1" class="trust-logo">
+                            <img src="assets/clientlogo/Logo-4.png" alt="Client logo 2" class="trust-logo">
+                            <img src="assets/clientlogo/logo-10.webp" alt="Client logo 3" class="trust-logo">
+                            <img src="assets/clientlogo/logo-15.png" alt="Client logo 4" class="trust-logo">
                         </div>
                         <div class="trust-text">
                             Trusted by <strong>500+ enterprises</strong> worldwide
@@ -970,7 +980,7 @@
                             No AI assistance included
                         </div>
                     </div>
-                    <a href="#" class="price-card__cta">Get started</a>
+                    <a href="assets/Asset Tagging Solution.pdf" target="_blank" rel="noopener noreferrer" class="price-card__cta">Get started</a>
                 </div>
 
                 <div class="price-card price-card--featured">
@@ -1003,7 +1013,7 @@
                             Priority onboarding &amp; reporting templates
                         </div>
                     </div>
-                    <a href="#" class="price-card__cta">Get started</a>
+                    <a href="assets/Asset Tagging Solution.pdf" target="_blank" rel="noopener noreferrer" class="price-card__cta">Get started</a>
                 </div>
 
                 <div class="price-card">
@@ -1092,19 +1102,37 @@
                     </button>
                     <button class="btn-ghost" style="font-size:1rem;padding:18px 36px">Request a Demo</button>
                 </div>
+                <form id="connectForm" class="cta-form" data-endpoint="/ajax/contact-handler.php">
+                    <div class="cta-form__grid">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Email Address" required>
+                        <input type="text" name="subject" placeholder="Subject" required>
+                        <input type="tel" name="phone" placeholder="Phone Number" required>
+                    </div>
+                    <textarea name="details" placeholder="Tell us more about your requirement" rows="4" required></textarea>
+                    <button type="submit" class="btn-primary cta-form__submit">Send</button>
+                    <p id="connectFormStatus" class="cta-form__status" aria-live="polite"></p>
+                </form>
                 <div class="cta__contact">
                     <div class="contact-item">
                         <div class="contact-icon">📞</div>
                         <div>
-                            <div style="font-size:.75rem;color:var(--muted);margin-bottom:2px">Phone</div>
-                            <div style="font-weight:500">+971 56 491 9389</div>
+                            <div style="font-size:.75rem;color:var(--muted);margin-bottom:2px">Phone (Asia)</div>
+                            <div style="font-weight:600;font-size:1rem;user-select:none;-webkit-user-select:none">+971 56 491 9389</div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <div style="font-size:.75rem;color:var(--muted);margin-bottom:2px">Phone (North America)</div>
+                            <div style="font-weight:600;font-size:1rem;user-select:none;-webkit-user-select:none">+1 519 808 1000</div>
                         </div>
                     </div>
                     <div class="contact-item">
                         <div class="contact-icon">✉️</div>
                         <div>
                             <div style="font-size:.75rem;color:var(--muted);margin-bottom:2px">Email</div>
-                            <div style="font-weight:500">middleeast@acesoft.ca</div>
+                            <div style="font-weight:600;font-size:1rem;user-select:none;-webkit-user-select:none">info@acesoft.ca</div>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -1139,7 +1167,30 @@
         </svg>
     </button>
 
+    <!-- WhatsApp Floating Button -->
+    <a class="whatsapp-float"
+        href="#"
+        onclick="openWhatsAppChat(event)"
+        aria-label="Chat on WhatsApp">
+        <img src="assets/whatsapp-color-svgrepo-com.svg" alt="WhatsApp">
+    </a>
+
     <!-- ─── Scripts ───────────────────────────────────────────────────────── -->
+    <script>
+        function openWhatsAppChat(event) {
+            event.preventDefault();
+            const message = "hai i want to know more about asset tagging rfid app.";
+            const encodedMessage = encodeURIComponent(message);
+            const phone = "15198081000";
+            const appUrl = `whatsapp://send?phone=${phone}&text=${encodedMessage}`;
+            const webUrl = `https://wa.me/${phone}?text=${encodedMessage}`;
+
+            window.location.href = appUrl;
+            setTimeout(() => {
+                window.open(webUrl, "_blank", "noopener,noreferrer");
+            }, 700);
+        }
+    </script>
     <script src="main.js"></script>
 
 </body>
