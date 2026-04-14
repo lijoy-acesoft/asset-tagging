@@ -859,6 +859,8 @@ ul {
   padding: 14px 0;
   position: relative;
   z-index: 1;
+  background: linear-gradient(150deg, #3f4755 0%, #303846 52%, #252d3a 100%);
+
 }
 
 .ticker {
@@ -866,6 +868,7 @@ ul {
   gap: 0;
   width: max-content;
   animation: ticker 28s linear infinite;
+  
 }
 
 .ticker__item {
@@ -876,13 +879,19 @@ ul {
   padding: 0 26px;
   white-space: nowrap;
   border-right: 1px solid rgba(255, 255, 255, .06);
+
 }
 
 .ticker__logo {
   width: 150px;
   height: 44px;
   object-fit: contain;
-  filter: grayscale(8%) brightness(1.05);
+  /* filter: grayscale(4%) brightness(1.02) drop-shadow(0 1px 2px rgba(0, 0, 0, .45)); */
+  /* background: linear-gradient(150deg, #3f4755 0%, #303846 52%, #252d3a 100%); */
+  /* border: 1px solid rgba(255, 255, 255, .18); */
+  /* border-radius: 10px; */
+  padding: 6px 8px;
+  /* box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08), 0 8px 20px rgba(0, 0, 0, .22); */
 }
 
 @media (max-width: 768px) {
@@ -919,19 +928,20 @@ ul {
 
 .partners__grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 16px;
 }
 
 .partner-card {
+  background: linear-gradient(150deg, #3f4755 0%, #303846 52%, #252d3a 100%);
   min-height: 116px;
   border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, .1);
-  background: linear-gradient(165deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .02));
+  border: 1px solid rgba(255, 255, 255, .18);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 16px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08);
   transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
 }
 
@@ -945,6 +955,7 @@ ul {
   max-width: 100%;
   max-height: 54px;
   object-fit: contain;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .5));
 }
 
 /* ─── Section: How It Solves ─────────────────────────────────────────── */
