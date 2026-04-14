@@ -2141,6 +2141,36 @@ ul {
   flex-wrap: wrap
 }
 
+.office-flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px 8px 10px;
+  border-radius: 99px;
+  background: linear-gradient(165deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .02));
+  border: 1px solid rgba(255, 255, 255, .14);
+  font-size: .82rem;
+  color: var(--muted);
+  font-weight: 500;
+  transition: all .24s ease;
+}
+
+.office-flag:hover {
+  border-color: rgba(26, 107, 255, .42);
+  color: var(--white);
+  transform: translateY(-1px);
+}
+
+.office-flag__icon {
+  width: 22px;
+  height: 16px;
+  object-fit: cover;
+  border-radius: 3px;
+  display: inline-block;
+  background: rgba(255, 255, 255, .1);
+  border: 1px solid rgba(255, 255, 255, .16);
+}
+
 .flag {
   padding: 9px 16px;
   border-radius: 99px;
