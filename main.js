@@ -186,6 +186,15 @@ const connectForm = document.getElementById('connectForm');
 const connectFormStatus = document.getElementById('connectFormStatus');
 
 if (connectForm) {
+  const startedAtInput = connectForm.querySelector('input[name="form_started_at"]');
+  const recaptchaWidget = connectForm.querySelector('.g-recaptcha');
+  const recaptchaSiteKey = connectForm.dataset.recaptchaSiteKey || '';
+  if (recaptchaWidget && recaptchaSiteKey) {
+    recaptchaWidget.dataset.sitekey = recaptchaSiteKey;
+  }
+
+  if (startedAtInput) startedAtInput.value = String(Date.now());
+
   connectForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
@@ -197,12 +206,22 @@ if (connectForm) {
 
     const submitBtn = connectForm.querySelector('button[type="submit"]');
     const formData = new FormData(connectForm);
+    const recaptchaToken = String(formData.get('g-recaptcha-response') || '').trim();
+
+    if (!recaptchaToken) {
+      if (connectFormStatus) connectFormStatus.textContent = 'Please complete the reCAPTCHA verification.';
+      return;
+    }
+
     const payload = {
       name: formData.get('name'),
       email: formData.get('email'),
       subject: formData.get('subject'),
       phone: formData.get('phone'),
-      details: formData.get('details')
+      details: formData.get('details'),
+      recaptcha_token: recaptchaToken,
+      website: String(formData.get('website') || ''),
+      form_started_at: String(formData.get('form_started_at') || '')
     };
 
     try {
@@ -224,8 +243,11 @@ if (connectForm) {
       if (!response.ok) throw new Error('Request failed');
 
       connectForm.reset();
+      if (startedAtInput) startedAtInput.value = String(Date.now());
+      if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
       if (connectFormStatus) connectFormStatus.textContent = 'Thank you! We will contact you shortly.';
     } catch (error) {
+      if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
       if (connectFormStatus) connectFormStatus.textContent = 'Unable to submit right now. Please try again.';
     } finally {
       if (submitBtn) {

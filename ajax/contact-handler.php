@@ -31,6 +31,9 @@ $email = trim((string)($payload['email'] ?? ''));
 $subject = trim((string)($payload['subject'] ?? ''));
 $phone = trim((string)($payload['phone'] ?? ''));
 $details = trim((string)($payload['details'] ?? ($payload['message'] ?? '')));
+$recaptchaToken = trim((string)($payload['recaptcha_token'] ?? ($payload['g-recaptcha-response'] ?? '')));
+$websiteTrap = trim((string)($payload['website'] ?? ''));
+$formStartedAt = trim((string)($payload['form_started_at'] ?? ''));
 
 $errors = [];
 if ($name === '') {
@@ -47,6 +50,54 @@ if ($phone === '') {
 }
 if ($details === '') {
     $errors[] = 'Details are required';
+}
+if ($websiteTrap !== '') {
+    $errors[] = 'Spam check failed';
+}
+
+$startedAtMs = filter_var($formStartedAt, FILTER_VALIDATE_INT);
+$nowMs = (int) round(microtime(true) * 1000);
+if ($startedAtMs === false || ($nowMs - (int)$startedAtMs) < 2000) {
+    $errors[] = 'Submission rejected by anti-bot check';
+}
+
+if ($recaptchaToken === '') {
+    $errors[] = 'reCAPTCHA is required';
+}
+
+/**
+ * Verify Google reCAPTCHA token using server secret key.
+ */
+if (empty($errors)) {
+    $secret = (string) (getenv('RECAPTCHA_SECRET_KEY') ?: '');
+    if ($secret === '') {
+        $errors[] = 'reCAPTCHA is not configured on server';
+    } else {
+        $verifyParams = http_build_query([
+            'secret' => $secret,
+            'response' => $recaptchaToken,
+            'remoteip' => $_SERVER['REMOTE_ADDR'] ?? '',
+        ]);
+
+        $verifyResponse = @file_get_contents(
+            'https://www.google.com/recaptcha/api/siteverify',
+            false,
+            stream_context_create([
+                'http' => [
+                    'method' => 'POST',
+                    'header' => "Content-Type: application/x-www-form-urlencoded\r\n",
+                    'content' => $verifyParams,
+                    'timeout' => 10,
+                ],
+            ])
+        );
+
+        $verifyData = json_decode((string)$verifyResponse, true);
+        $verifyOk = is_array($verifyData) && !empty($verifyData['success']);
+        if (!$verifyOk) {
+            $errors[] = 'reCAPTCHA verification failed';
+        }
+    }
 }
 
 if (!empty($errors)) {

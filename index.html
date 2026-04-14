@@ -1390,7 +1390,7 @@
                     </button>
                     <button class="btn-ghost" style="font-size:1rem;padding:18px 36px">Request a Demo</button>
                 </div> -->
-                <form id="connectForm" class="cta-form" data-endpoint="/ajax/contact-handler.php">
+                <form id="connectForm" class="cta-form" data-endpoint="/ajax/contact-handler.php" data-recaptcha-site-key="6Let7CEpAAAAAAWcuci5SW_v6v6vc2jzb68nxvzW">
                     <div class="cta-form__grid">
                         <input type="text" name="name" placeholder="Your Name" required>
                         <input type="email" name="email" placeholder="Email Address" required>
@@ -1398,6 +1398,11 @@
                         <input type="tel" name="phone" placeholder="Phone Number" required>
                     </div>
                     <textarea name="details" placeholder="Tell us more about your requirement" rows="4" required></textarea>
+                    <div class="cta-form__captcha">
+                        <div class="g-recaptcha" data-sitekey="6Let7CEpAAAAAAWcuci5SW_v6v6vc2jzb68nxvzW"></div>
+                        <input type="hidden" name="form_started_at" value="">
+                        <input class="bot-trap" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    </div>
                     <button type="submit" class="btn-primary cta-form__submit">Send</button>
                     <p id="connectFormStatus" class="cta-form__status" aria-live="polite"></p>
                 </form>
@@ -1480,6 +1485,7 @@
             }, 700);
         }
     </script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="main.js"></script>
 
 </body>

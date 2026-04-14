@@ -2633,11 +2633,12 @@ ul {
 .cta-form {
   max-width: 900px;
   margin: 0 auto 46px;
-  padding: 26px;
+  padding: 28px;
   border-radius: var(--rL);
-  border: 1px solid rgba(255, 255, 255, .12);
-  background: linear-gradient(160deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .02));
+  border: 1px solid rgba(255, 255, 255, .14);
+  background: linear-gradient(155deg, rgba(255, 255, 255, .07), rgba(255, 255, 255, .025));
   backdrop-filter: blur(8px);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, .28), inset 0 0 0 1px rgba(255, 255, 255, .05);
 }
 
 .cta-form__grid {
@@ -2678,16 +2679,45 @@ ul {
   margin-bottom: 14px;
 }
 
+.cta-form__captcha {
+  margin: 4px 0 16px;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, .13);
+  background: linear-gradient(160deg, rgba(7, 18, 38, .86), rgba(9, 20, 42, .66));
+}
+
+.cta-form__captcha .g-recaptcha {
+  display: inline-block;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.cta-form__captcha iframe {
+  border-radius: 10px;
+}
+
+.bot-trap {
+  position: absolute !important;
+  left: -10000px !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 .cta-form__submit {
   width: 100%;
   justify-content: center;
+  min-height: 48px;
 }
 
 .cta-form__status {
-  min-height: 20px;
-  margin-top: 10px;
-  font-size: .78rem;
-  color: rgba(244, 247, 255, .75);
+  min-height: 22px;
+  margin-top: 12px;
+  font-size: .8rem;
+  color: rgba(244, 247, 255, .92);
+  text-align: center;
 }
 
 .cta__contact {
@@ -2848,6 +2878,19 @@ footer {
 
   .cta-form__grid {
     grid-template-columns: 1fr;
+  }
+
+  .cta-form {
+    padding: 20px;
+  }
+
+  .cta-form__captcha {
+    overflow-x: auto;
+  }
+
+  .cta-form__captcha .g-recaptcha {
+    transform: scale(.92);
+    transform-origin: left top;
   }
 
   .why__right {
