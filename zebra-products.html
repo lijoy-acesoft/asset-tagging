@@ -1,0 +1,346 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zebra Products | Acesoft Official Partner</title>
+    <meta name="description" content="Explore Zebra devices available through Acesoft including mobile computers, scanners, RFID readers, tablets, printers, and POS-ready solutions.">
+    <link rel="icon" href="./assets/rfid_logo.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .zb-page {
+            padding-top: 130px;
+            padding-bottom: 90px;
+        }
+
+        .zb-header {
+            margin-bottom: 24px;
+        }
+
+        .zb-sub {
+            max-width: 860px;
+            color: rgba(244, 247, 255, 0.82);
+            line-height: 1.7;
+        }
+
+        .zb-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .zb-tab-btn {
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            background: rgba(255, 255, 255, 0.04);
+            color: rgba(244, 247, 255, 0.86);
+            border-radius: 999px;
+            padding: 10px 16px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .25s ease;
+        }
+
+        .zb-tab-btn:hover {
+            color: #fff;
+            border-color: rgba(66, 139, 255, 0.58);
+        }
+
+        .zb-tab-btn.active {
+            color: #fff;
+            border-color: rgba(66, 139, 255, 0.75);
+            background: linear-gradient(135deg, rgba(29, 92, 214, 0.28), rgba(23, 151, 221, 0.22));
+            box-shadow: 0 12px 26px rgba(0, 0, 0, .28);
+        }
+
+        .zb-tab-panel {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .zb-tab-panel.active {
+            display: block;
+        }
+
+        .zb-products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .zb-card {
+            background: linear-gradient(165deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.025));
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+        }
+
+        .zb-card__media {
+            height: 230px;
+            background: radial-gradient(circle at center, rgba(58, 73, 98, 0.55) 0%, rgba(18, 26, 42, 0.92) 76%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+        }
+
+        .zb-card__media img {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            filter: contrast(1.06) saturate(1.05) drop-shadow(0 8px 16px rgba(0, 0, 0, .35));
+        }
+
+        .zb-card__body {
+            padding: 14px 14px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .zb-card h3 {
+            margin: 0;
+            font-size: 1rem;
+            color: #fff;
+        }
+
+        .zb-card p {
+            margin: 0;
+            font-size: 0.83rem;
+            color: rgba(255, 255, 255, 0.92);
+            line-height: 1.55;
+            flex: 1;
+        }
+
+        .zb-card a {
+            font-size: 0.8rem;
+            color: #5db0ff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .zb-card a:hover {
+            color: #9fd3ff;
+        }
+
+        .zb-footnote {
+            margin-top: 18px;
+            font-size: 0.76rem;
+            color: rgba(244, 247, 255, 0.68);
+        }
+
+        .zb-back {
+            margin-top: 24px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.84rem;
+            color: rgba(244, 247, 255, 0.86);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 999px;
+            padding: 8px 14px;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .zb-back:hover {
+            border-color: rgba(26, 107, 255, 0.44);
+            color: var(--white);
+        }
+
+        @media (max-width: 1100px) {
+            .zb-products-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 760px) {
+            .zb-products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="bg"></canvas>
+
+    <div class="top-contact-bar">
+        <div class="top-contact-bar__inner">
+            <div class="top-contact-bar__flags">
+                <span class="top-contact-flag"><img src="https://flagcdn.com/w20/ca.png" alt="Canada flag"> Canada</span>
+                <span class="top-contact-flag"><img src="https://flagcdn.com/w20/us.png" alt="USA flag"> USA</span>
+                <span class="top-contact-flag"><img src="https://flagcdn.com/w20/ae.png" alt="UAE flag"> UAE</span>
+                <span class="top-contact-flag"><img src="https://flagcdn.com/w20/in.png" alt="India flag"> India</span>
+                <span class="top-contact-flag"><img src="https://flagcdn.com/w20/gb.png" alt="United Kingdom flag"> UK</span>
+            </div>
+            <div class="top-contact-bar__contacts">
+                <span>Asia: +971 56 491 9389</span>
+                <span>North America: +1 519 808 1000</span>
+                <span>Email: info@acesoft.ca</span>
+            </div>
+        </div>
+    </div>
+
+    <nav class="nav">
+        <div class="nav__logo">
+            <a href="index.html">
+                <img src="assets/rfid_logo.png" alt="AssetTrack Pro Logo" style="height: 64px; width: auto; object-fit: contain;">
+            </a>
+        </div>
+        <div class="nav__links">
+            <a href="index.html">Home</a>
+            <a href="pointmobile-products.html">Point Mobiles</a>
+            <a href="zebra-products.html">Zebra</a>
+        </div>
+        <button class="nav__cta" onclick="window.location.href='index.html#cta'">Let's Connect</button>
+    </nav>
+
+    <section class="zb-page">
+        <div class="container">
+            <div class="zb-header reveal">
+                <span class="section-label">Zebra Product Catalog</span>
+                <h1 class="h2">Official Zebra<br><em>Product List</em></h1>
+                <p class="zb-sub">As an official Zebra partner, Acesoft supports sourcing and deployment across Zebra enterprise mobility, scanning, RFID, and printing solutions.</p>
+            </div>
+
+            <div class="zb-tabs reveal" role="tablist" aria-label="Zebra categories">
+                <button class="zb-tab-btn active" type="button" data-tab="mobile">Mobile Computers</button>
+                <button class="zb-tab-btn" type="button" data-tab="scanner">Barcode Scanners</button>
+                <button class="zb-tab-btn" type="button" data-tab="rfid">RFID</button>
+                <button class="zb-tab-btn" type="button" data-tab="tablet">Tablets</button>
+                <button class="zb-tab-btn" type="button" data-tab="printer">Printers</button>
+                <button class="zb-tab-btn" type="button" data-tab="pos">POS</button>
+                <button class="zb-tab-btn" type="button" data-tab="supplies">Printing Supplies</button>
+                <button class="zb-tab-btn" type="button" data-tab="vision">Machine Vision</button>
+                <button class="zb-tab-btn" type="button" data-tab="kiosk">Interactive Kiosks</button>
+                <button class="zb-tab-btn" type="button" data-tab="amr">Autonomous Robots</button>
+                <button class="zb-tab-btn" type="button" data-tab="location">Location Technologies</button>
+                <button class="zb-tab-btn" type="button" data-tab="sensors">Environmental Sensors</button>
+                <button class="zb-tab-btn" type="button" data-tab="accessories">Accessories</button>
+            </div>
+
+            <div class="zb-tab-panel active reveal" data-panel="mobile">
+                <div class="zb-products-grid">
+                    <article class="zb-card"><div class="zb-card__media"><img src="assets/devices/zebra/TC73.jpg" alt="TC73"></div><div class="zb-card__body"><h3>TC73</h3><p>Ultra-rugged mobile computer with Wi-Fi 6E, 6-inch display, and advanced scanning for demanding field operations.</p><a href="contact-us.html">Contact Us</a></div></article>
+                    <article class="zb-card"><div class="zb-card__media"><img src="assets/devices/zebra/TC52ax.jpg" alt="TC52ax"></div><div class="zb-card__body"><h3>TC52ax</h3><p>Enterprise handheld designed for in-store workflows with Zebra DNA tools and high-speed Wi-Fi 6 connectivity.</p><a href="contact-us.html">Contact Us</a></div></article>
+                    <article class="zb-card"><div class="zb-card__media"><img src="assets/devices/zebra/TC58.jpg" alt="TC58"></div><div class="zb-card__body"><h3>TC58</h3><p>Next-gen 5G and Wi-Fi 6E mobile computer built for outdoor delivery, logistics, and real-time operations.</p><a href="contact-us.html">Contact Us</a></div></article>
+                </div>
+            </div>
+
+            <div class="zb-tab-panel reveal" data-panel="scanner">
+                <div class="zb-products-grid">
+                    <article class="zb-card"><div class="zb-card__media"><img src="assets/devices/zebra/DS4608.jpg" alt="DS4608"></div><div class="zb-card__body"><h3>DS4608</h3><p>Versatile 1D/2D scanner with multi-code capture and OCR options to speed checkout and service workflows.</p><a href="contact-us.html">Contact Us</a></div></article>
+                    <article class="zb-card"><div class="zb-card__media"><img src="assets/devices/zebra/DS2200-Series.jpg" alt="DS2200 Series"></div><div class="zb-card__body"><h3>DS2200 Series</h3><p>Affordable corded and cordless imagers that deliver dependable 1D/2D scanning for everyday operations.</p><a href="contact-us.html">Contact Us</a></div></article>
+                    <article class="zb-card"><div class="zb-card__media"><img src="assets/devices/zebra/LI2208.jpg" alt="LI2208"></div><div class="zb-card__body"><h3>LI2208</h3><p>High-performance linear imager with excellent 1D barcode capture over wider ranges and surfaces.</p><a href="contact-us.html">Contact Us</a></div></article>
+                </div>
+            </div>
+
+            <div class="zb-tab-panel reveal" data-panel="rfid">
+                <div class="zb-products-grid">
+                    <article class="zb-card"><div class="zb-card__media"><img src="assets/devices/zebra/TC22R.jpg" alt="TC22R"></div><div class="zb-card__body"><h3>TC22R</h3><p>Integrated handheld RFID reader designed to simplify mobile asset tracking with lightweight all-touch operation.</p><a href="contact-us.html">Contact Us</a></div></article>
+                    <article class="zb-card"><div class="zb-card__media"><img src="assets/devices/zebra/MC3330xR.jpg" alt="MC3330xR"></div><div class="zb-card__body"><h3>MC3330xR</h3><p>Rugged UHF RFID handheld reader optimized for high-speed inventory, replenishment, and warehouse visibility.</p><a href="contact-us.html">Contact Us</a></div></article>
+                    <article class="zb-card"><div class="zb-card__media"><img src="assets/devices/zebra/FX9600.jpg" alt="FX9600"></div><div class="zb-card__body"><h3>FX9600</h3><p>Industrial fixed RFID reader built for high-volume, rugged environments requiring reliable large-scale reads.</p><a href="contact-us.html">Contact Us</a></div></article>
+                    <article class="zb-card"><div class="zb-card__media"><img src="assets/devices/zebra/Handheld-RFID-Readers.jpg" alt="Handheld RFID Readers"></div><div class="zb-card__body"><h3>Handheld RFID Readers</h3><p>Complete handheld RFID lineup for rugged, indoor, and sled-style asset tracking workflows.</p><a href="https://www.zebra.com/us/en/products/rfid/rfid-handhelds.html" target="_blank" rel="noopener noreferrer">View official category</a></div></article>
+                    <article class="zb-card"><div class="zb-card__media"><img src="assets/devices/zebra/Fixed-RFID-Readers-and-Infrastructure.jpg" alt="Fixed RFID Readers and Infrastructure"></div><div class="zb-card__body"><h3>Fixed RFID Readers &amp; Infrastructure</h3><p>Fixed readers and infrastructure solutions for dock doors, portals, high-volume tracking, and real-time visibility.</p><a href="https://www.zebra.com/us/en/products/rfid/rfid-readers.html" target="_blank" rel="noopener noreferrer">View official category</a></div></article>
+                    <article class="zb-card"><div class="zb-card__media"><img src="assets/devices/zebra/RFID-Printers.jpg" alt="RFID Printers"></div><div class="zb-card__body"><h3>RFID Printers</h3><p>RFID encoding and printing portfolio covering industrial, desktop, and mobile encoding use cases.</p><a href="https://www.zebra.com/us/en/products/rfid/rfid-printers.html" target="_blank" rel="noopener noreferrer">View official category</a></div></article>
+                    <article class="zb-card"><div class="zb-card__media"><img src="assets/devices/zebra/RFID-Antennas.jpg" alt="RFID Antennas"></div><div class="zb-card__body"><h3>RFID Antennas</h3><p>Low-profile and rugged RFID antenna families built to scale read coverage in varied environments.</p><a href="https://www.zebra.com/us/en/products/rfid/rfid-reader-antennas/an6x-series.html" target="_blank" rel="noopener noreferrer">View antenna series</a></div></article>
+                </div>
+            </div>
+
+            <div class="zb-tab-panel reveal" data-panel="tablet">
+                <div class="zb-products-grid">
+                    <article class="zb-card"><div class="zb-card__media"><img src="assets/devices/zebra/ET85.jpg" alt="ET85"></div><div class="zb-card__body"><h3>ET85</h3><p>Rugged 2-in-1 Windows tablet for mission-critical field and vehicle workflows with high-end wireless support.</p><a href="contact-us.html">Contact Us</a></div></article>
+                    <article class="zb-card"><div class="zb-card__media"><img src="assets/devices/zebra/ET65.jpg" alt="ET65"></div><div class="zb-card__body"><h3>ET65</h3><p>Android enterprise tablet with outdoor-ready display and 5G/Wi-Fi 6E connectivity for frontline teams.</p><a href="contact-us.html">Contact Us</a></div></article>
+                    <article class="zb-card"><div class="zb-card__media"><img src="assets/devices/zebra/ET45.jpg" alt="ET45"></div><div class="zb-card__body"><h3>ET45</h3><p>Cost-effective rugged tablet with enterprise-grade durability for transportation, field service, and retail.</p><a href="contact-us.html">Contact Us</a></div></article>
+                </div>
+            </div>
+
+            <div class="zb-tab-panel reveal" data-panel="printer">
+                <div class="zb-products-grid">
+                    <article class="zb-card"><div class="zb-card__media"><img src="assets/devices/zebra/ZT421.jpg" alt="ZT421"></div><div class="zb-card__body"><h3>ZT421</h3><p>6-inch industrial printer with durable construction and configurable options for evolving production requirements.</p><a href="contact-us.html">Contact Us</a></div></article>
+                    <article class="zb-card"><div class="zb-card__media"><img src="assets/devices/zebra/ZT610.jpg" alt="ZT610"></div><div class="zb-card__body"><h3>ZT610</h3><p>High-performance industrial printer delivering precise output and full operational control in critical environments.</p><a href="contact-us.html">Contact Us</a></div></article>
+                    <article class="zb-card"><div class="zb-card__media"><img src="assets/devices/zebra/ZQ630-Plus.jpg" alt="ZQ630 Plus"></div><div class="zb-card__body"><h3>ZQ630 Plus</h3><p>Premium mobile printer for high-volume on-the-go label and receipt printing with robust wireless connectivity.</p><a href="contact-us.html">Contact Us</a></div></article>
+                </div>
+            </div>
+
+            <div class="zb-tab-panel reveal" data-panel="pos">
+                <div class="zb-products-grid">
+                    <article class="zb-card"><div class="zb-card__media"><img src="assets/devices/zebra/FXP20-POS-RFID-Reader.jpg" alt="FXP20 POS RFID Reader"></div><div class="zb-card__body"><h3>FXP20 POS RFID Reader</h3><p>Compact all-in-one RFID reader designed for staffed and self-checkout lanes with improved item visibility.</p><a href="contact-us.html">Contact Us</a></div></article>
+                </div>
+            </div>
+
+            <div class="zb-tab-panel reveal" data-panel="supplies">
+                <div class="zb-products-grid">
+                    <article class="zb-card"><div class="zb-card__media"><img src="assets/devices/zebra/Printing-Supplies.jpg" alt="Printing Supplies"></div><div class="zb-card__body"><h3>Printing Supplies</h3><p>Zebra certified labels, tags, ribbons, cards, and receipt media for consistent print quality and printer performance.</p><a href="https://www.zebra.com/us/en/products/supplies.html" target="_blank" rel="noopener noreferrer">View official category</a></div></article>
+                    <article class="zb-card"><div class="zb-card__media"><img src="assets/devices/zebra/Barcode-Labels-and-Tags.png" alt="Barcode Labels and Tags"></div><div class="zb-card__body"><h3>Barcode Labels &amp; Tags</h3><p>Broad label portfolio for thermal transfer and direct thermal use cases across retail, logistics, and healthcare.</p><a href="https://www.zebra.com/us/en/products/supplies/labels-tags.html" target="_blank" rel="noopener noreferrer">View official category</a></div></article>
+                    <article class="zb-card"><div class="zb-card__media"><img src="assets/devices/zebra/Barcode-Labels-and-Tags.png" alt="RFID Labels and Tags"></div><div class="zb-card__body"><h3>RFID Labels &amp; Tags</h3><p>RFID media options for item-level visibility, compliance labeling, and end-to-end tracking workflows.</p><a href="https://www.zebra.com/us/en/products/supplies/rfid-labels-tags.html" target="_blank" rel="noopener noreferrer">View official category</a></div></article>
+                </div>
+            </div>
+
+            <div class="zb-tab-panel reveal" data-panel="vision">
+                <div class="zb-products-grid">
+                    <article class="zb-card"><div class="zb-card__media"><img src="assets/devices/zebra/Machine-Vision-and-Industrial-Fixed-Scanners.jpg" alt="Machine Vision and Industrial Fixed Scanners"></div><div class="zb-card__body"><h3>Machine Vision &amp; Industrial Fixed Scanners</h3><p>Industrial automation imaging and fixed scanning portfolio for traceability, quality control, and inspection lines.</p><a href="https://www.zebra.com/us/en/products/industrial-machine-vision-fixed-scanners.html" target="_blank" rel="noopener noreferrer">View official category</a></div></article>
+                </div>
+            </div>
+
+            <div class="zb-tab-panel reveal" data-panel="kiosk">
+                <div class="zb-products-grid">
+                    <article class="zb-card"><div class="zb-card__media"><img src="assets/devices/zebra/Interactive-Kiosks.jpg" alt="Interactive Kiosks"></div><div class="zb-card__body"><h3>Interactive Kiosks</h3><p>Self-service kiosk solutions for in-aisle retail, check-in, information access, and digital interaction points.</p><a href="https://www.zebra.com/us/en/products/interactive-kiosks.html" target="_blank" rel="noopener noreferrer">View official category</a></div></article>
+                </div>
+            </div>
+
+            <div class="zb-tab-panel reveal" data-panel="amr">
+                <div class="zb-products-grid">
+                    <article class="zb-card"><div class="zb-card__media"><img src="assets/devices/zebra/Barcode-Labels-and-Tags.png" alt="Autonomous Mobile Robots"></div><div class="zb-card__body"><h3>Autonomous Mobile Robots</h3><p>AMR systems for warehouse and fulfillment flow automation, transport, and flexible operations scaling.</p><a href="https://www.zebra.com/us/en/products/autonomous-mobile-robots.html" target="_blank" rel="noopener noreferrer">View official category</a></div></article>
+                </div>
+            </div>
+
+            <div class="zb-tab-panel reveal" data-panel="location">
+                <div class="zb-products-grid">
+                    <article class="zb-card"><div class="zb-card__media"><img src="assets/devices/zebra/Barcode-Labels-and-Tags.png" alt="Location Technologies"></div><div class="zb-card__body"><h3>Location Technologies</h3><p>Real-time visibility technologies for tracking assets, inventory, and personnel across operations.</p><a href="https://www.zebra.com/us/en/products/location-technologies.html" target="_blank" rel="noopener noreferrer">View official category</a></div></article>
+                    <article class="zb-card"><div class="zb-card__media"><img src="assets/devices/zebra/Barcode-Labels-and-Tags.png" alt="Ultra Wideband Technology"></div><div class="zb-card__body"><h3>Ultra Wideband (UWB)</h3><p>High-precision indoor and outdoor tracking for safety, material flow, and operational intelligence.</p><a href="https://www.zebra.com/us/en/products/location-technologies/ultra-wideband.html" target="_blank" rel="noopener noreferrer">View official category</a></div></article>
+                    <article class="zb-card"><div class="zb-card__media"><img src="assets/devices/zebra/Barcode-Labels-and-Tags.png" alt="Bluetooth Low Energy Devices"></div><div class="zb-card__body"><h3>Bluetooth Low Energy Devices</h3><p>Scalable BLE beacon and bridge solutions for indoor location awareness and workflow tracking.</p><a href="https://www.zebra.com/us/en/products/location-technologies/bluetooth-beacons.html" target="_blank" rel="noopener noreferrer">View official category</a></div></article>
+                </div>
+            </div>
+
+            <div class="zb-tab-panel reveal" data-panel="sensors">
+                <div class="zb-products-grid">
+                    <article class="zb-card"><div class="zb-card__media"><img src="assets/devices/zebra/Environmental-Sensors.jpg" alt="Environmental Sensors"></div><div class="zb-card__body"><h3>Environmental Sensors</h3><p>Temperature and environment monitoring sensors to protect cold chain and sensitive inventory operations.</p><a href="https://www.zebra.com/us/en/products/environmental-sensors.html" target="_blank" rel="noopener noreferrer">View official category</a></div></article>
+                </div>
+            </div>
+
+            <div class="zb-tab-panel reveal" data-panel="accessories">
+                <div class="zb-products-grid">
+                    <article class="zb-card"><div class="zb-card__media"><img src="assets/devices/zebra/Barcode-Labels-and-Tags.png" alt="Accessories"></div><div class="zb-card__body"><h3>Accessories</h3><p>Chargers, cradles, mounts, batteries, and accessory ecosystem to optimize Zebra deployment and uptime.</p><a href="https://www.zebra.com/us/en/products/accessories.html" target="_blank" rel="noopener noreferrer">View official category</a></div></article>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script src="main.js"></script>
+    <script>
+        const zebraTabButtons = document.querySelectorAll('.zb-tab-btn');
+        const zebraPanels = document.querySelectorAll('.zb-tab-panel');
+
+        zebraTabButtons.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const target = btn.dataset.tab;
+                zebraTabButtons.forEach((item) => item.classList.remove('active'));
+                zebraPanels.forEach((panel) => panel.classList.remove('active'));
+                btn.classList.add('active');
+                const activePanel = document.querySelector(`.zb-tab-panel[data-panel="${target}"]`);
+                if (activePanel) activePanel.classList.add('active');
+            });
+        });
+    </script>
+</body>
+
+</html>
+

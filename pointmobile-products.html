@@ -1,0 +1,315 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Point Mobile Products | Acesoft Official Partner</title>
+    <meta name="description"
+        content="Explore Point Mobile products available through Acesoft: mobile computers, handheld terminals, RFID solutions, tablets, Bluetooth scanners, and POS devices.">
+    <link rel="icon" href="./assets/rfid_logo.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .pm-page {
+            padding-top: 130px;
+            padding-bottom: 90px;
+        }
+
+        .pm-header {
+            margin-bottom: 24px;
+        }
+
+        .pm-sub {
+            max-width: 860px;
+            color: rgba(244, 247, 255, 0.82);
+            line-height: 1.7;
+        }
+
+        .pm-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .pm-tab-btn {
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            background: rgba(255, 255, 255, 0.04);
+            color: rgba(244, 247, 255, 0.86);
+            border-radius: 999px;
+            padding: 10px 16px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .25s ease;
+        }
+
+        .pm-tab-btn:hover {
+            color: #fff;
+            border-color: rgba(66, 139, 255, 0.58);
+        }
+
+        .pm-tab-btn.active {
+            color: #fff;
+            border-color: rgba(66, 139, 255, 0.75);
+            background: linear-gradient(135deg, rgba(29, 92, 214, 0.28), rgba(23, 151, 221, 0.22));
+            box-shadow: 0 12px 26px rgba(0, 0, 0, .28);
+        }
+
+        .pm-tab-panel {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .pm-tab-panel.active {
+            display: block;
+        }
+
+        .pm-products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .pm-card {
+            background: linear-gradient(165deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.025));
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+        }
+
+        .pm-card__media {
+            height: 320px;
+            background: radial-gradient(circle at center, rgba(58, 73, 98, 0.55) 0%, rgba(18, 26, 42, 0.92) 76%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .pm-card__media img {
+            max-width: 94%;
+            max-height: 94%;
+            object-fit: contain;
+            mix-blend-mode: normal;
+            filter: contrast(1.08) saturate(1.08) drop-shadow(0 8px 16px rgba(0, 0, 0, .35));
+        }
+
+        .pm-card__body {
+            padding: 14px 14px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .pm-card h3 {
+            margin: 0;
+            font-size: 1rem;
+            color: #fff;
+        }
+
+        .pm-card p {
+            margin: 0;
+            font-size: 0.83rem;
+            color: rgba(255, 255, 255, 0.92);
+            line-height: 1.55;
+            flex: 1;
+        }
+
+        .pm-card a {
+            font-size: 0.8rem;
+            color: #5db0ff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .pm-card a:hover {
+            color: #9fd3ff;
+        }
+
+        .pm-footnote {
+            margin-top: 18px;
+            font-size: 0.76rem;
+            color: rgba(244, 247, 255, 0.68);
+        }
+
+        .pm-back {
+            margin-top: 24px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.84rem;
+            color: rgba(244, 247, 255, 0.86);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 999px;
+            padding: 8px 14px;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .pm-back:hover {
+            border-color: rgba(26, 107, 255, 0.44);
+            color: var(--white);
+        }
+
+        @media (max-width: 1100px) {
+            .pm-products-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 760px) {
+            .pm-products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="bg"></canvas>
+
+    <div class="top-contact-bar">
+        <div class="top-contact-bar__inner">
+            <div class="top-contact-bar__flags">
+                <span class="top-contact-flag"><img src="https://flagcdn.com/w20/ca.png" alt="Canada flag"> Canada</span>
+                <span class="top-contact-flag"><img src="https://flagcdn.com/w20/us.png" alt="USA flag"> USA</span>
+                <span class="top-contact-flag"><img src="https://flagcdn.com/w20/ae.png" alt="UAE flag"> UAE</span>
+                <span class="top-contact-flag"><img src="https://flagcdn.com/w20/in.png" alt="India flag"> India</span>
+                <span class="top-contact-flag"><img src="https://flagcdn.com/w20/gb.png" alt="United Kingdom flag"> UK</span>
+            </div>
+            <div class="top-contact-bar__contacts">
+                <span>Asia: +971 56 491 9389</span>
+                <span>North America: +1 519 808 1000</span>
+                <span>Email: info@acesoft.ca</span>
+            </div>
+        </div>
+    </div>
+
+    <nav class="nav">
+        <div class="nav__logo">
+            <a href="index.html">
+                <img src="assets/rfid_logo.png" alt="AssetTrack Pro Logo"
+                    style="height: 64px; width: auto; object-fit: contain;" />
+            </a>
+        </div>
+        <div class="nav__links">
+            <a href="index.html">Home</a>
+            <a href="pointmobile-products.html">Point Mobiles</a>
+            <!-- <a href="zebra-products.html">Zebra</a> -->
+        </div>
+        <button class="nav__cta" onclick="window.location.href='index.html#cta'">Let's Connect</button>
+    </nav>
+
+    <section class="pm-page">
+        <div class="container">
+            <div class="pm-header reveal">
+                <span class="section-label">Point Mobile Product Catalog</span>
+                <h1 class="h2">Official Point Mobile<br><em>Product List</em></h1>
+                <p class="pm-sub">As an official Point Mobile partner, Acesoft can support procurement and deployment
+                    across the complete Point Mobile portfolio.</p>
+            </div>
+
+            <div class="pm-tabs reveal" role="tablist" aria-label="Point Mobile categories">
+                <button class="pm-tab-btn active" type="button" data-tab="mobile">Mobile Computers</button>
+                <button class="pm-tab-btn" type="button" data-tab="handheld">Handheld Terminals</button>
+                <button class="pm-tab-btn" type="button" data-tab="rfid">RFID Solutions</button>
+                <button class="pm-tab-btn" type="button" data-tab="tablet">Tablets</button>
+                <button class="pm-tab-btn" type="button" data-tab="scanner">Bluetooth Scanners</button>
+                <button class="pm-tab-btn" type="button" data-tab="pos">POS</button>
+            </div>
+
+            <div class="pm-tab-panel active reveal" data-panel="mobile">
+                <div class="pm-products-grid">
+                    <article class="pm-card"><div class="pm-card__media"><img src="assets/devices/pointmobile/MF52.png" alt="MF52"></div><div class="pm-card__body"><h3>MF52</h3><p>Flagship rugged mobile computer with high performance, long battery life, and 5G/Wi-Fi 7 connectivity.</p><a href="https://pointmobile.com/en/product/view.php?idx=176" target="_blank" rel="noopener noreferrer">View product</a></div></article>
+                    <article class="pm-card"><div class="pm-card__media"><img src="assets/devices/pointmobile/PM84P.png" alt="PM84P"></div><div class="pm-card__body"><h3>PM84P</h3><p>Enhanced PM84 series device with Wi-Fi 6E, upgraded scan engine, Android 15, and optional RFID SKU.</p><a href="https://pointmobile.com/en/product/view.php?idx=182" target="_blank" rel="noopener noreferrer">View product</a></div></article>
+                    <article class="pm-card"><div class="pm-card__media"><img src="assets/devices/pointmobile/PM68.png" alt="PM68"></div><div class="pm-card__body"><h3>PM68</h3><p>Hybrid touchscreen and keypad design for fast, reliable one-handed operation across field workflows.</p><a href="https://pointmobile.com/en/product/view.php?idx=9" target="_blank" rel="noopener noreferrer">View product</a></div></article>
+                    <article class="pm-card"><div class="pm-card__media"><img src="assets/devices/pointmobile/PM95.png" alt="PM95"></div><div class="pm-card__body"><h3>PM95</h3><p>Enterprise 5G mobile computer with FHD+ display, strong camera system, and high-speed processing.</p><a href="https://pointmobile.com/en/product/view.php?idx=7" target="_blank" rel="noopener noreferrer">View product</a></div></article>
+                    <article class="pm-card"><div class="pm-card__media"><img src="assets/devices/pointmobile/PM84.png" alt="PM84"></div><div class="pm-card__body"><h3>PM84</h3><p>Practical enterprise handheld with octa-core power, dependable memory, and optional extended battery.</p><a href="https://pointmobile.com/en/product/view.php?idx=12" target="_blank" rel="noopener noreferrer">View product</a></div></article>
+                    <article class="pm-card"><div class="pm-card__media"><img src="assets/devices/pointmobile/PM86.png" alt="PM86"></div><div class="pm-card__body"><h3>PM86</h3><p>Wi-Fi 6 capable mobile computer with enterprise features like hot-swap support and rugged reliability.</p><a href="https://pointmobile.com/en/product/view.php?idx=8" target="_blank" rel="noopener noreferrer">View product</a></div></article>
+                    <article class="pm-card"><div class="pm-card__media"><img src="assets/devices/pointmobile/PM75.png" alt="PM75"></div><div class="pm-card__body"><h3>PM75</h3><p>Ergonomic Android mobile computer built for retail and logistics with durable all-day field performance.</p><a href="https://pointmobile.com/en/product/view.php?idx=53" target="_blank" rel="noopener noreferrer">View product</a></div></article>
+                    <article class="pm-card"><div class="pm-card__media"><img src="assets/devices/pointmobile/PM67.png" alt="PM67"></div><div class="pm-card__body"><h3>PM67</h3><p>Rugged transport and warehouse device with strong processor performance and reliable daily operation.</p><a href="https://pointmobile.com/en/product/view.php?idx=11" target="_blank" rel="noopener noreferrer">View product</a></div></article>
+                    <article class="pm-card"><div class="pm-card__media"><img src="assets/devices/pointmobile/PM30.png" alt="PM30"></div><div class="pm-card__body"><h3>PM30</h3><p>Slim and lightweight retail-focused mobile computer certified for Android enterprise deployments.</p><a href="https://pointmobile.com/en/product/view.php?idx=51" target="_blank" rel="noopener noreferrer">View product</a></div></article>
+                    <article class="pm-card"><div class="pm-card__media"><img src="assets/devices/pointmobile/PM30hc.png" alt="PM30hc"></div><div class="pm-card__body"><h3>PM30hc</h3><p>Healthcare-ready variant with disinfection-resistant enclosure designed for medical environments.</p><a href="https://pointmobile.com/en/product/view.php?idx=52" target="_blank" rel="noopener noreferrer">View product</a></div></article>
+                    <article class="pm-card"><div class="pm-card__media"><img src="assets/devices/pointmobile/PM90.png" alt="PM90"></div><div class="pm-card__body"><h3>PM90</h3><p>Versatile mobile computer with physical front keys and built-in card readers for extended use cases.</p><a href="https://pointmobile.com/en/product/view.php?idx=10" target="_blank" rel="noopener noreferrer">View product</a></div></article>
+                    <article class="pm-card"><div class="pm-card__media"><img src="assets/devices/pointmobile/PM85.png" alt="PM85"></div><div class="pm-card__body"><h3>PM85</h3><p>Durable multi-industry handheld with flexible scanner options and optional high-capacity battery.</p><a href="https://pointmobile.com/en/product/view.php?idx=54" target="_blank" rel="noopener noreferrer">View product</a></div></article>
+                </div>
+            </div>
+
+            <div class="pm-tab-panel reveal" data-panel="handheld">
+                <div class="pm-products-grid">
+                    <article class="pm-card"><div class="pm-card__media"><img src="assets/devices/pointmobile/PM352.png" alt="PM352"></div><div class="pm-card__body"><h3>PM352</h3><p>Lightweight handheld terminal with strong performance, camera capability, and next-gen wireless support.</p><a href="https://pointmobile.com/en/product/view.php?idx=14" target="_blank" rel="noopener noreferrer">View product</a></div></article>
+                    <article class="pm-card"><div class="pm-card__media"><img src="assets/devices/pointmobile/PM452.png" alt="PM452"></div><div class="pm-card__body"><h3>PM452</h3><p>Rugged enterprise handheld terminal designed for demanding industrial and logistics operations.</p><a href="https://pointmobile.com/en/product/view.php?idx=13" target="_blank" rel="noopener noreferrer">View product</a></div></article>
+                    <article class="pm-card"><div class="pm-card__media"><img src="assets/devices/pointmobile/PM351.png" alt="PM351"></div><div class="pm-card__body"><h3>PM351</h3><p>Slim handheld terminal with multiple keypad and scan engine options for flexible workflows.</p><a href="https://pointmobile.com/en/product/view.php?idx=16" target="_blank" rel="noopener noreferrer">View product</a></div></article>
+                    <article class="pm-card"><div class="pm-card__media"><img src="assets/devices/pointmobile/PM451.png" alt="PM451"></div><div class="pm-card__body"><h3>PM451</h3><p>IP65-rated logistics terminal with ergonomic handling and configurable input and scan options.</p><a href="https://pointmobile.com/en/product/view.php?idx=15" target="_blank" rel="noopener noreferrer">View product</a></div></article>
+                    <article class="pm-card"><div class="pm-card__media"><img src="assets/devices/pointmobile/PM560.png" alt="PM560"></div><div class="pm-card__body"><h3>PM560</h3><p>Warehouse-focused terminal with Android 11, Wi-Fi 6, and robust data capture performance.</p><a href="https://pointmobile.com/en/product/view.php?idx=17" target="_blank" rel="noopener noreferrer">View product</a></div></article>
+                    <article class="pm-card"><div class="pm-card__media"><img src="assets/devices/pointmobile/PM550.png" alt="PM550"></div><div class="pm-card__body"><h3>PM550</h3><p>Reliable handheld with removable battery, scanner options, and proven long-shift operation.</p><a href="https://pointmobile.com/en/product/view.php?idx=55" target="_blank" rel="noopener noreferrer">View product</a></div></article>
+                </div>
+            </div>
+
+            <div class="pm-tab-panel reveal" data-panel="rfid">
+                <div class="pm-products-grid">
+                    <article class="pm-card"><div class="pm-card__media"><img src="assets/devices/pointmobile/RF88.png" alt="RF88"></div><div class="pm-card__body"><h3>RF88</h3><p>High-speed UHF RFID reader with long read range and broad compatibility across Point Mobile devices.</p><a href="https://pointmobile.com/en/product/view.php?idx=18" target="_blank" rel="noopener noreferrer">View product</a></div></article>
+                </div>
+            </div>
+
+            <div class="pm-tab-panel reveal" data-panel="tablet">
+                <div class="pm-products-grid">
+                    <article class="pm-card"><div class="pm-card__media"><img src="assets/devices/pointmobile/TR54.png" alt="TR54"></div><div class="pm-card__body"><h3>TR54</h3><p>Rugged enterprise tablet with hot-swap battery, NFC, scanner options, and Android 15 support.</p><a href="https://pointmobile.com/en/product/view.php?idx=2" target="_blank" rel="noopener noreferrer">View product</a></div></article>
+                    <article class="pm-card"><div class="pm-card__media"><img src="assets/devices/pointmobile/PT11.png" alt="PT11"></div><div class="pm-card__body"><h3>PT11</h3><p>Versatile 11-inch tablet for business and field use with connected mobility features.</p><a href="https://pointmobile.com/en/product/view.php?idx=19" target="_blank" rel="noopener noreferrer">View product</a></div></article>
+                    <article class="pm-card"><div class="pm-card__media"><img src="assets/devices/pointmobile/TE32.png" alt="TE32"></div><div class="pm-card__body"><h3>TE32</h3><p>Android tablet with expandable storage and long battery life for daily enterprise operations.</p><a href="https://pointmobile.com/en/product/view.php?idx=20" target="_blank" rel="noopener noreferrer">View product</a></div></article>
+                </div>
+            </div>
+
+            <div class="pm-tab-panel reveal" data-panel="scanner">
+                <div class="pm-products-grid">
+                    <article class="pm-card"><div class="pm-card__media"><img src="assets/devices/pointmobile/PM5.png" alt="PM5"></div><div class="pm-card__body"><h3>PM5</h3><p>Ultra-light wearable Bluetooth scanner with ambidextrous design for high-speed scanning tasks.</p><a href="https://pointmobile.com/en/product/view.php?idx=21" target="_blank" rel="noopener noreferrer">View product</a></div></article>
+                    <article class="pm-card"><div class="pm-card__media"><img src="assets/devices/pointmobile/PM3.png" alt="PM3"></div><div class="pm-card__body"><h3>PM3</h3><p>Compact Bluetooth scanner offering durable construction and dependable barcode capture.</p><a href="https://pointmobile.com/en/product/view.php?idx=56" target="_blank" rel="noopener noreferrer">View product</a></div></article>
+                </div>
+            </div>
+
+            <div class="pm-tab-panel reveal" data-panel="pos">
+                <div class="pm-products-grid">
+                    <article class="pm-card"><div class="pm-card__media"><img src="assets/devices/pointmobile/P8.png" alt="P8"></div><div class="pm-card__body"><h3>P8</h3><p>Lightweight Android mPOS terminal built for fast checkout and multi-method payment acceptance.</p><a href="https://pointmobile.com/en/product/view.php?idx=22" target="_blank" rel="noopener noreferrer">View product</a></div></article>
+                    <article class="pm-card"><div class="pm-card__media"><img src="assets/devices/pointmobile/P10.png" alt="P10"></div><div class="pm-card__body"><h3>P10</h3><p>Feature-rich mPOS for small and growing businesses with integrated scan and print capabilities.</p><a href="https://pointmobile.com/en/product/view.php?idx=23" target="_blank" rel="noopener noreferrer">View product</a></div></article>
+                    <article class="pm-card"><div class="pm-card__media"><img src="assets/devices/pointmobile/PS72.png" alt="PS72"></div><div class="pm-card__body"><h3>PS72</h3><p>Premium retail POS system with strong hardware performance and configurable store setup options.</p><a href="https://pointmobile.com/en/product/view.php?idx=24" target="_blank" rel="noopener noreferrer">View product</a></div></article>
+                    <article class="pm-card"><div class="pm-card__media"><img src="assets/devices/pointmobile/PM500.png" alt="PM500"></div><div class="pm-card__body"><h3>PM500</h3><p>Durable Android mobile payment terminal delivering practical usability in demanding environments.</p><a href="https://pointmobile.com/en/product/view.php?idx=57" target="_blank" rel="noopener noreferrer">View product</a></div></article>
+                    <article class="pm-card"><div class="pm-card__media"><img src="assets/devices/pointmobile/PS32.png" alt="PS32"></div><div class="pm-card__body"><h3>PS32</h3><p>Compact dual-display Android POS terminal with rich connectivity for modern retail counters.</p><a href="https://pointmobile.com/en/product/view.php?idx=113" target="_blank" rel="noopener noreferrer">View product</a></div></article>
+                </div>
+            </div>
+
+     
+
+        </div>
+    </section>
+
+    <script src="main.js"></script>
+    <script>
+        const tabButtons = document.querySelectorAll('.pm-tab-btn');
+        const tabPanels = document.querySelectorAll('.pm-tab-panel');
+
+        tabButtons.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const target = btn.dataset.tab;
+                tabButtons.forEach((item) => item.classList.remove('active'));
+                tabPanels.forEach((panel) => panel.classList.remove('active'));
+                btn.classList.add('active');
+                const activePanel = document.querySelector(`.pm-tab-panel[data-panel="${target}"]`);
+                if (activePanel) activePanel.classList.add('active');
+            });
+        });
+
+        document.querySelectorAll('.pm-card a').forEach((link) => {
+            link.textContent = 'Contact Us';
+            link.href = 'contact-us.html';
+            link.removeAttribute('target');
+            link.removeAttribute('rel');
+        });
+    </script>
+</body>
+
+</html>
+
