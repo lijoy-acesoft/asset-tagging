@@ -17,6 +17,11 @@ function respond_json(int $status, array $payload): void {
     exit;
 }
 
+function is_ajax_request(): bool {
+    $requestedWith = $_SERVER['HTTP_X_REQUESTED_WITH'] ?? '';
+    return strcasecmp($requestedWith, 'XMLHttpRequest') === 0;
+}
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     respond_json(405, ['ok' => false, 'message' => 'Method not allowed.']);
 }
@@ -27,29 +32,9 @@ $name = trim((string)($input['name'] ?? ''));
 $email = trim((string)($input['email'] ?? ''));
 $subject = trim((string)($input['subject'] ?? ''));
 $phone = trim((string)($input['phone'] ?? ''));
-$message = trim((string)($input['details'] ?? ''));
-$website = trim((string)($input['website'] ?? ''));
-$startedAt = (int)($input['form_started_at'] ?? 0);
-$mathNum1 = (int)($input['math_num_1'] ?? 0);
-$mathNum2 = (int)($input['math_num_2'] ?? 0);
-$mathAnswer = (int)($input['math_answer'] ?? PHP_INT_MIN);
+$message = trim((string)($input['details'] ?? ($input['message'] ?? '')));
 
 $errors = [];
-
-if ($website !== '') {
-    respond_json(400, ['ok' => false, 'message' => 'Bot validation failed.']);
-}
-
-if ($startedAt > 0) {
-    $elapsedMs = (int)(round(microtime(true) * 1000) - $startedAt);
-    if ($elapsedMs < 3000) {
-        respond_json(400, ['ok' => false, 'message' => 'Please wait a few seconds before submitting.']);
-    }
-}
-
-if ($mathAnswer !== ($mathNum1 + $mathNum2)) {
-    $errors[] = 'Verification answer is incorrect.';
-}
 if ($name === '') {
     $errors[] = 'Name is required.';
 }
@@ -69,6 +54,7 @@ if (!empty($errors)) {
 
 $to = "jim.jacob@acesoft.ca";
 $safeSubject = preg_replace('/[\r\n]+/', ' ', $subject);
+$safeSubject = 'NOT SPAM - ASSET TAGGING LEAD' . ($safeSubject !== '' ? ' - ' . $safeSubject : '');
 $safeName = preg_replace('/[\r\n]+/', ' ', $name);
 $safeEmail = preg_replace('/[\r\n]+/', '', $email);
 
@@ -84,5 +70,11 @@ if (!mail($to, $safeSubject, $body, $headers)) {
     respond_json(500, ['ok' => false, 'message' => 'Failed to send email. Please try again later.']);
 }
 
-respond_json(200, ['ok' => true, 'message' => 'Submitted successfully.']);
+$redirectUrl = 'http://www.assettracking.ca/index.html';
+if (is_ajax_request()) {
+    respond_json(200, ['ok' => true, 'message' => 'Submitted successfully.', 'redirect_url' => $redirectUrl]);
+}
+
+header('Location: ' . $redirectUrl);
+exit;
 ?>

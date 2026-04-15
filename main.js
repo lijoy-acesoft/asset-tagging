@@ -136,6 +136,31 @@ window.addEventListener('scroll', () => {
   }
 });
 
+/* ── Mobile nav toggle ── */
+const nav = document.querySelector('.nav');
+const navToggle = document.querySelector('.nav__toggle');
+const navLinks = document.querySelector('.nav__links');
+
+if (nav && navToggle && navLinks) {
+  const closeNav = () => {
+    nav.classList.remove('nav--open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  };
+
+  navToggle.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('nav--open');
+    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  navLinks.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeNav);
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900) closeNav();
+  });
+}
+
 /* ── Animated numbers ── */
 function animateNum(el, target, suffix = '') {
   let start = 0;
@@ -187,21 +212,29 @@ const connectFormStatus = document.getElementById('connectFormStatus');
 
 if (connectForm) {
   const startedAtInput = connectForm.querySelector('input[name="form_started_at"]');
-  const mathQuestion = connectForm.querySelector('#mathQuestion');
-  const mathAnswerInput = connectForm.querySelector('input[name="math_answer"]');
-  const mathNum1Input = connectForm.querySelector('input[name="math_num_1"]');
-  const mathNum2Input = connectForm.querySelector('input[name="math_num_2"]');
-
-  function setMathChallenge() {
-    const num1 = Math.floor(Math.random() * 20) + 1;
-    const num2 = Math.floor(Math.random() * 20) + 1;
-    if (mathQuestion) mathQuestion.textContent = `${num1} + ${num2} = ?`;
-    if (mathNum1Input) mathNum1Input.value = String(num1);
-    if (mathNum2Input) mathNum2Input.value = String(num2);
-    if (mathAnswerInput) mathAnswerInput.value = '';
+  function getRecaptchaApi() {
+    if (window.grecaptcha && window.grecaptcha.enterprise) return window.grecaptcha.enterprise;
+    if (window.grecaptcha) return window.grecaptcha;
+    return null;
   }
 
-  setMathChallenge();
+  function getRecaptchaToken(formData) {
+    const formToken = String(formData.get('g-recaptcha-response') || '').trim();
+    if (formToken) return formToken;
+    const recaptchaApi = getRecaptchaApi();
+    if (recaptchaApi && typeof recaptchaApi.getResponse === 'function') {
+      return String(recaptchaApi.getResponse() || '').trim();
+    }
+    return '';
+  }
+
+  function resetRecaptcha() {
+    const recaptchaApi = getRecaptchaApi();
+    if (recaptchaApi && typeof recaptchaApi.reset === 'function') {
+      recaptchaApi.reset();
+    }
+  }
+
   if (startedAtInput) startedAtInput.value = String(Date.now());
 
   connectForm.addEventListener('submit', async (event) => {
@@ -215,14 +248,9 @@ if (connectForm) {
 
     const submitBtn = connectForm.querySelector('button[type="submit"]');
     const formData = new FormData(connectForm);
-    const num1 = Number(formData.get('math_num_1'));
-    const num2 = Number(formData.get('math_num_2'));
-    const mathAnswer = Number(formData.get('math_answer'));
-    const expectedMathAnswer = num1 + num2;
-
-    if (!Number.isFinite(mathAnswer) || mathAnswer !== expectedMathAnswer) {
-      if (connectFormStatus) connectFormStatus.textContent = 'Please answer the verification question correctly.';
-      setMathChallenge();
+    const recaptchaToken = getRecaptchaToken(formData);
+    if (!recaptchaToken) {
+      if (connectFormStatus) connectFormStatus.textContent = 'Please complete reCAPTCHA verification.';
       return;
     }
 
@@ -232,9 +260,7 @@ if (connectForm) {
       subject: formData.get('subject'),
       phone: formData.get('phone'),
       details: formData.get('details'),
-      math_num_1: String(formData.get('math_num_1') || ''),
-      math_num_2: String(formData.get('math_num_2') || ''),
-      math_answer: String(formData.get('math_answer') || ''),
+      recaptcha_token: recaptchaToken,
       website: String(formData.get('website') || ''),
       form_started_at: String(formData.get('form_started_at') || '')
     };
@@ -256,13 +282,18 @@ if (connectForm) {
       });
 
       if (!response.ok) throw new Error('Request failed');
+      const result = await response.json();
+      if (result && result.redirect_url) {
+        window.location.href = result.redirect_url;
+        return;
+      }
 
       connectForm.reset();
       if (startedAtInput) startedAtInput.value = String(Date.now());
-      setMathChallenge();
+      resetRecaptcha();
       if (connectFormStatus) connectFormStatus.textContent = 'Thank you! We will contact you shortly.';
     } catch (error) {
-      setMathChallenge();
+      resetRecaptcha();
       if (connectFormStatus) connectFormStatus.textContent = 'Unable to submit right now. Please try again.';
     } finally {
       if (submitBtn) {

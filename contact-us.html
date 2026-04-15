@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -7,7 +7,9 @@
     <title>Contact Us | AssetTrack Pro by Acesoft</title>
     <meta name="description" content="Contact Acesoft for AssetTrack Pro demos, pricing, deployment, and support across North America and Asia.">
     <link rel="icon" href="./assets/rfid_logo.png" type="image/png">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P8JSS6WB04"></script>
     <link rel="stylesheet" href="style.css">
+    <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
 </head>
 
 <body>
@@ -36,7 +38,12 @@
                 <img src="assets/rfid_logo.png" alt="AssetTrack Pro Logo" style="height: 64px; width: auto; object-fit: contain;">
             </a>
         </div>
-        <div class="nav__links">
+        <button type="button" class="nav__toggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav__links" id="primaryNav">
             <a href="index.html#solve">How It Works</a>
             <a href="index.html#features">Overview</a>
             <a href="index.html#industries">Industries</a>
@@ -75,10 +82,8 @@
                     </div>
                     <textarea name="details" placeholder="Tell us more about your requirement" rows="4" required></textarea>
                     <div class="cta-form__captcha">
-                        <label class="cta-form__captcha-label" for="mathAnswer">Quick verification: <strong id="mathQuestion">Loading question...</strong></label>
-                        <input id="mathAnswer" type="number" name="math_answer" placeholder="Enter answer" inputmode="numeric" required>
-                        <input type="hidden" name="math_num_1" value="">
-                        <input type="hidden" name="math_num_2" value="">
+                        <label class="cta-form__captcha-label">Verification</label>
+                        <div class="g-recaptcha" data-sitekey="6LdSzbgsAAAAAJ8sSOCgPu5ox75NF1r68kgDu_JC" data-action="LOGIN"></div>
                         <input type="hidden" name="form_started_at" value="">
                         <input class="bot-trap" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
                     </div>
