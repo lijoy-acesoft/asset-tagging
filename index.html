@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asset Tagging RFID App | RFID Asset Management Software | AssetTrack Pro</title>
     <meta name="description"
-        content="AssetTrack Pro is an AI-powered asset tagging RFID app for enterprises. Tag assets in real time with RFID, QR, and barcode, automate audits, manage maintenance, and control lifecycle operations.">
+        content="AssetTrack Pro is an AI-powered asset tagging RFID app for enterprises. Tag and track assets in real time with RFID, QR, and barcode, automate audits, manage maintenance, and control lifecycle operations.">
     <meta name="keywords"
-        content="asset tagging rfid app, RFID asset tagging software, RFID asset management system, enterprise asset tagging app, real-time asset tagging, fixed asset management software, barcode and QR asset tagging, AI asset tagging platform, asset audit software, asset lifecycle management, asset maintenance tracking, AssetTrack Pro Acesoft">
+        content="asset tagging rfid app, RFID asset tagging software, RFID asset management system, enterprise asset tagging app, real-time asset tracking, fixed asset management software, barcode and QR asset tagging, AI asset tagging platform, asset audit software, asset lifecycle management, asset maintenance tracking, AssetTrack Pro Acesoft, assettagging.ca">
     <meta name="author" content="Acesoft">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="googlebot" content="index, follow">
@@ -23,9 +23,9 @@
     <meta name="apple-mobile-web-app-title" content="AssetTrack Pro">
 
     <link rel="canonical" href="https://assettagging.ca/">
+    <link rel="alternate" hreflang="en-CA" href="https://assettagging.ca/">
     <link rel="alternate" hreflang="en" href="https://assettagging.ca/">
     <link rel="alternate" hreflang="x-default" href="https://assettagging.ca/">
-    <link rel="alternate" href="https://assettracking.ca/">
     <link rel="icon" href="./assets/rfid_logo.png" type="image/png">
     <link rel="shortcut icon" href="./assets/rfid_logo.png" type="image/png">
 
@@ -66,7 +66,7 @@
                     "telephone": "+1-519-808-1000",
                     "sameAs": [
                         "https://acesoft.ca/",
-                        "https://assettracking.ca/",
+                        "https://assettagging.ca/",
                         "https://assettagging.ca/"
                     ]
                 },
@@ -158,6 +158,15 @@
             ]
         }
     </script>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P8JSS6WB04"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P8JSS6WB04');
+</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -1407,7 +1416,7 @@
                     </button>
                     <button class="btn-ghost" style="font-size:1rem;padding:18px 36px">Request a Demo</button>
                 </div> -->
-                <form id="connectForm" class="cta-form" data-endpoint="/ajax/contact-handler.php" data-recaptcha-site-key="6Let7CEpAAAAAAWcuci5SW_v6v6vc2jzb68nxvzW">
+                <form id="connectForm" class="cta-form" data-endpoint="/ajax/contact-handler.php">
                     <div class="cta-form__grid">
                         <input type="text" name="name" placeholder="Your Name" required>
                         <input type="email" name="email" placeholder="Email Address" required>
@@ -1416,7 +1425,10 @@
                     </div>
                     <textarea name="details" placeholder="Tell us more about your requirement" rows="4" required></textarea>
                     <div class="cta-form__captcha">
-                        <div class="g-recaptcha" data-sitekey="6Le60LgsAAAAAMhd4E5vf-dhzxCwbqMkGSrIA-jm"></div>
+                        <label class="cta-form__captcha-label" for="mathAnswer">Quick verification: <strong id="mathQuestion">Loading question...</strong></label>
+                        <input id="mathAnswer" type="number" name="math_answer" placeholder="Enter answer" inputmode="numeric" required>
+                        <input type="hidden" name="math_num_1" value="">
+                        <input type="hidden" name="math_num_2" value="">
                         <input type="hidden" name="form_started_at" value="">
                         <input class="bot-trap" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
                     </div>
@@ -1502,7 +1514,6 @@
             }, 700);
         }
     </script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="main.js"></script>
 
 </body>

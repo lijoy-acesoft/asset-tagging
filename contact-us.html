@@ -66,7 +66,7 @@
                 <h1 class="cta__title">Connect With Our Team</h1>
                 <p class="cta__sub">Tell us your requirement and we will help you with the right device, licensing, and deployment path for your operations.</p>
 
-                <form id="connectForm" class="cta-form" data-endpoint="/ajax/contact-handler.php" data-recaptcha-site-key="6Let7CEpAAAAAAWcuci5SW_v6v6vc2jzb68nxvzW">
+                <form id="connectForm" class="cta-form" data-endpoint="/ajax/contact-handler.php">
                     <div class="cta-form__grid">
                         <input type="text" name="name" placeholder="Your Name" required>
                         <input type="email" name="email" placeholder="Email Address" required>
@@ -75,7 +75,10 @@
                     </div>
                     <textarea name="details" placeholder="Tell us more about your requirement" rows="4" required></textarea>
                     <div class="cta-form__captcha">
-                        <div class="g-recaptcha" data-sitekey="6Le60LgsAAAAAMhd4E5vf-dhzxCwbqMkGSrIA-jm"></div>
+                        <label class="cta-form__captcha-label" for="mathAnswer">Quick verification: <strong id="mathQuestion">Loading question...</strong></label>
+                        <input id="mathAnswer" type="number" name="math_answer" placeholder="Enter answer" inputmode="numeric" required>
+                        <input type="hidden" name="math_num_1" value="">
+                        <input type="hidden" name="math_num_2" value="">
                         <input type="hidden" name="form_started_at" value="">
                         <input class="bot-trap" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
                     </div>
@@ -117,7 +120,6 @@
         </div>
     </section>
 
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="main.js"></script>
 </body>
 

@@ -187,12 +187,21 @@ const connectFormStatus = document.getElementById('connectFormStatus');
 
 if (connectForm) {
   const startedAtInput = connectForm.querySelector('input[name="form_started_at"]');
-  const recaptchaWidget = connectForm.querySelector('.g-recaptcha');
-  const recaptchaSiteKey = connectForm.dataset.recaptchaSiteKey || '';
-  if (recaptchaWidget && recaptchaSiteKey) {
-    recaptchaWidget.dataset.sitekey = recaptchaSiteKey;
+  const mathQuestion = connectForm.querySelector('#mathQuestion');
+  const mathAnswerInput = connectForm.querySelector('input[name="math_answer"]');
+  const mathNum1Input = connectForm.querySelector('input[name="math_num_1"]');
+  const mathNum2Input = connectForm.querySelector('input[name="math_num_2"]');
+
+  function setMathChallenge() {
+    const num1 = Math.floor(Math.random() * 20) + 1;
+    const num2 = Math.floor(Math.random() * 20) + 1;
+    if (mathQuestion) mathQuestion.textContent = `${num1} + ${num2} = ?`;
+    if (mathNum1Input) mathNum1Input.value = String(num1);
+    if (mathNum2Input) mathNum2Input.value = String(num2);
+    if (mathAnswerInput) mathAnswerInput.value = '';
   }
 
+  setMathChallenge();
   if (startedAtInput) startedAtInput.value = String(Date.now());
 
   connectForm.addEventListener('submit', async (event) => {
@@ -206,10 +215,14 @@ if (connectForm) {
 
     const submitBtn = connectForm.querySelector('button[type="submit"]');
     const formData = new FormData(connectForm);
-    const recaptchaToken = String(formData.get('g-recaptcha-response') || '').trim();
+    const num1 = Number(formData.get('math_num_1'));
+    const num2 = Number(formData.get('math_num_2'));
+    const mathAnswer = Number(formData.get('math_answer'));
+    const expectedMathAnswer = num1 + num2;
 
-    if (!recaptchaToken) {
-      if (connectFormStatus) connectFormStatus.textContent = 'Please complete the reCAPTCHA verification.';
+    if (!Number.isFinite(mathAnswer) || mathAnswer !== expectedMathAnswer) {
+      if (connectFormStatus) connectFormStatus.textContent = 'Please answer the verification question correctly.';
+      setMathChallenge();
       return;
     }
 
@@ -219,7 +232,9 @@ if (connectForm) {
       subject: formData.get('subject'),
       phone: formData.get('phone'),
       details: formData.get('details'),
-      recaptcha_token: recaptchaToken,
+      math_num_1: String(formData.get('math_num_1') || ''),
+      math_num_2: String(formData.get('math_num_2') || ''),
+      math_answer: String(formData.get('math_answer') || ''),
       website: String(formData.get('website') || ''),
       form_started_at: String(formData.get('form_started_at') || '')
     };
@@ -244,10 +259,10 @@ if (connectForm) {
 
       connectForm.reset();
       if (startedAtInput) startedAtInput.value = String(Date.now());
-      if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
+      setMathChallenge();
       if (connectFormStatus) connectFormStatus.textContent = 'Thank you! We will contact you shortly.';
     } catch (error) {
-      if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
+      setMathChallenge();
       if (connectFormStatus) connectFormStatus.textContent = 'Unable to submit right now. Please try again.';
     } finally {
       if (submitBtn) {

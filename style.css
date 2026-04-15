@@ -2687,14 +2687,16 @@ ul {
   background: linear-gradient(160deg, rgba(7, 18, 38, .86), rgba(9, 20, 42, .66));
 }
 
-.cta-form__captcha .g-recaptcha {
-  display: inline-block;
-  border-radius: 10px;
-  overflow: hidden;
+.cta-form__captcha-label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: .9rem;
+  color: rgba(244, 247, 255, .92);
 }
 
-.cta-form__captcha iframe {
-  border-radius: 10px;
+.cta-form__captcha strong {
+  color: var(--white);
+  letter-spacing: .2px;
 }
 
 .bot-trap {
